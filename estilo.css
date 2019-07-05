@@ -1,0 +1,108 @@
+.quadrado{
+    width:116px;
+    height:106px;
+    float: left;
+    text-align: center;
+    border:2px solid rgb(8, 0, 0);
+    padding-top: 10px;
+}
+
+.jogo #a1{
+    border-top-color: white;
+    border-left-color: white;
+}
+.jogo #b1{
+    
+    border-left-color: white;
+}
+.jogo #c1{
+    border-bottom-color: white;
+    border-left-color: white;
+}
+
+.jogo #a2{
+    border-top-color: white;
+}
+
+.jogo #c2{
+    border-bottom-color: white;
+}
+
+.jogo #a3{
+    border-top-color: white;
+    border-right-color:  white;
+}
+.jogo #b3{
+    
+    border-right-color: white;
+}
+.jogo #c3{
+    border-bottom-color: white;
+    border-right-color: white;
+}
+
+.jogo{
+    padding-top: 50px;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+
+}
+
+.jogo .r0{
+width: 360px;
+height: 360px;
+z-index: -1;
+position: absolute; 
+}
+
+.r0 .imgP{
+    
+
+
+
+}
+.r0 #img2{
+    
+width: 360px;
+height: 360px;
+ float: right;
+z-index: -1;
+
+}
+
+.caixa{
+  
+	margin-top: 40px;
+	width: 400px;
+    height: 200px;
+    margin: auto;
+}
+.caixa #img1{
+    
+width: 30px;
+height: 30px;
+margin: auto;
+}
+
+img{
+    
+width: 100px;
+height: 100px;
+margin: auto;  
+}
+
+
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin: auto
+}
+#msg {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
+}

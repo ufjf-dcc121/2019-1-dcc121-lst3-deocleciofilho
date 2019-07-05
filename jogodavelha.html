@@ -1,11 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
-    
-    
+
+
+    <div class="jogo">
+
+        <div id="a1" class="quadrado" jogada=""></div>
+        <div id="a2" class="quadrado" jogada=""> </div>
+        <div id="a3" class="quadrado" jogada=""></div>
+        <div id="b1" class="quadrado" jogada=""></div>
+        <div id="b2" class="quadrado" jogada=""></div>
+        <div id="b3" class="quadrado" jogada=""></div>
+        <div id="c1" class="quadrado" jogada=""></div>
+        <div id="c2" class="quadrado" jogada=""></div>
+        <div id="c3" class="quadrado" jogada=""></div>
+
+        <div class= "r0">
+            <img id="img2" class="imgP" src="riscovmA.png">
+        </div>
+
+    </div>
+
+
+    <div id="caixa" class="caixa">
+
+        <div id=msg><b>
+                <p><img id="img1" src="x1.png"> <span id=jgd> </span></p></b>
+        </div>
+        <button id="btnreiniciar" type="reset" disabled="true"> Reiniciar Jogo </button>
+    </div>
+
+    <script>
+
+        const jgX = "X";
+        const jgY = "O";
+        var jogador = jgX;
+        var fimdojogo = false;
+        var images = new Array();
+
+        var sequence = [];
+        var actualRound = 0;
+        var seqPos = 0;
+        var msg = document.getElementById("msg");
+        var btnreiniciar = document.getElementById("btnreiniciar");
+        var jogadorDaVez = document.querySelectorAll("div#caixa #img1")[0];
+        var jogadoragora = document.getElementById("jgd");
+
+
+
+
+        preloadImages("x1.png", "o1.png")
+        atualizaPlacar();
+        enderecaQuadrados();
+
+        btnreiniciar.addEventListener("click", function () {
+            location.reload();
+        });
+
+        function preloadImages() {
+            for (i = 0; i < preloadImages.arguments.length; i++) {
+                images[i] = new Image()
+                images[i].src = preloadImages.arguments[i]
+            }
+        }
+
+
+        function atualizaPlacar() {
+
+            if (fimdojogo) {
+                return;
+            }
+            if (jogador == jgX) {
+                jogadoragora.textContent = "1º Jogador"
+                jogadorDaVez.setAttribute("src", images[0].src);
+            } else {
+                jogadoragora.textContent = "2º Jogador"
+                jogadorDaVez.setAttribute("src", images[1].src);
+            }
+        }
+
+        function enderecaQuadrados() {
+
+            var quadrados = document.getElementsByClassName("quadrado");
+            for (var i = 0; i < quadrados.length; i++) {
+
+                quadrados[i].innerHTML = "<img id='p1' src='" + images[0].src +
+                    "' border='0'><img id='p2' src='" +
+                    images[1].src + "' border='0'>";
+
+                quadrados[i].getElementsByTagName('img')[0].style.display = "none";
+                quadrados[i].getElementsByTagName('img')[1].style.display = "none";
+
+                quadrados[i].addEventListener("click", function () {
+
+                    if (fimdojogo) {
+                        return;
+                    }
+
+                    if (this.getAttribute("jogada") == "") {
+
+                        if (jogador == jgX) {
+                            this.getElementsByTagName('img')[0].style.display = "inline";
+                            this.setAttribute("jogada", jgX);
+                            jogador = jgY;
+
+                        } else {
+                            this.getElementsByTagName('img')[1].style.display = "inline";
+                            this.setAttribute("jogada", jgY);
+                            jogador = jgX;
+                        }
+                        atualizaPlacar();
+                        analisaJogada();
+
+                    }
+
+                });
+            }
+        }
+
+        function analisaJogada() {
+
+
+            var a1 = document.getElementById("a1").getAttribute("jogada");
+            var a2 = document.getElementById("a2").getAttribute("jogada");
+            var a3 = document.getElementById("a3").getAttribute("jogada");
+
+            var b1 = document.getElementById("b1").getAttribute("jogada");
+            var b2 = document.getElementById("b2").getAttribute("jogada");
+            var b3 = document.getElementById("b3").getAttribute("jogada");
+
+            var c1 = document.getElementById("c1").getAttribute("jogada");
+            var c2 = document.getElementById("c2").getAttribute("jogada");
+            var c3 = document.getElementById("c3").getAttribute("jogada");
+
+
+            var vencedor = "";
+
+            if (((a1 == b1 && a1 == c1) || 
+                 (a1 == a2 && a1 == a3) || 
+                 (a1 == b2 && a1 == c3)) && 
+                  a1 != "") {
+                vencedor = a1;
+
+            } else if ((b2 == b1 && b2 == b3 && b2 != "") || 
+                       (b2 == a2 && b2 == c2 && b2 != "") || 
+                       (b2 == a3 && b2 == c1 && b2 != "")) {
+                vencedor = b2;
+
+            } else if (((c3 == c2 && c3 == c1) || 
+                        (c3 == a3 && c3 == b3)) && 
+                         c3 != "") {
+                vencedor = c3;
+            }
+
+            if (vencedor != "") {
+                fimdojogo = true;
+                var m = "Parabéns!!! Você venceu";
+               
+                if (vencedor == "X") {
+                    vencedor = " 1º Jogador.";
+                } else {
+                    vencedor = " 2º Jogador.";
+                }
+
+                msg.textContent = m + vencedor;
+                btnreiniciar.disabled = false;
+            }
+
+            if (a1 != "" && a2 != "" && a3 != "" &&
+                b1 != "" && b2 != "" && b3 != "" &&
+                c1 != "" && c2 != "" && c3 != "") {
+
+                fimdojogo = true;
+
+                var m = "Empate!!! Fim do jogo";
+                msg.textContent = m;
+                btnreiniciar.disabled = false;
+            }
+        }
+
+
+
+    </script>
+
+
+
 </body>
+
 </html>
