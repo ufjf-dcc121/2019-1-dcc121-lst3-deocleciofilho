@@ -22,8 +22,8 @@
         <div id="c2" class="quadrado" jogada=""></div>
         <div id="c3" class="quadrado" jogada=""></div>
 
-        <div class= "r0">
-            <img id="img2" class="imgP" src="riscovmA.png">
+        <div class="r0">
+            <img id="img2" class="imgP" src="imagens/riscovmA.png">
         </div>
 
     </div>
@@ -32,7 +32,8 @@
     <div id="caixa" class="caixa">
 
         <div id=msg><b>
-                <p><img id="img1" src="x1.png"> <span id=jgd> </span></p></b>
+                <p><img id="img1" src="imagens/x1.png"> <span id=jgd> </span></p>
+            </b>
         </div>
         <button id="btnreiniciar" type="reset" disabled="true"> Reiniciar Jogo </button>
     </div>
@@ -56,7 +57,7 @@
 
 
 
-        preloadImages("x1.png", "o1.png")
+        preloadImages("imagens/x1.png", "imagens/o1.png")
         atualizaPlacar();
         enderecaQuadrados();
 
@@ -143,27 +144,27 @@
 
             var vencedor = "";
 
-            if (((a1 == b1 && a1 == c1) || 
-                 (a1 == a2 && a1 == a3) || 
-                 (a1 == b2 && a1 == c3)) && 
-                  a1 != "") {
+            if (((a1 == b1 && a1 == c1) ||
+                (a1 == a2 && a1 == a3) ||
+                (a1 == b2 && a1 == c3)) &&
+                a1 != "") {
                 vencedor = a1;
 
-            } else if ((b2 == b1 && b2 == b3 && b2 != "") || 
-                       (b2 == a2 && b2 == c2 && b2 != "") || 
-                       (b2 == a3 && b2 == c1 && b2 != "")) {
+            } else if ((b2 == b1 && b2 == b3 && b2 != "") ||
+                (b2 == a2 && b2 == c2 && b2 != "") ||
+                (b2 == a3 && b2 == c1 && b2 != "")) {
                 vencedor = b2;
 
-            } else if (((c3 == c2 && c3 == c1) || 
-                        (c3 == a3 && c3 == b3)) && 
-                         c3 != "") {
+            } else if (((c3 == c2 && c3 == c1) ||
+                (c3 == a3 && c3 == b3)) &&
+                c3 != "") {
                 vencedor = c3;
             }
 
             if (vencedor != "") {
                 fimdojogo = true;
                 var m = "Parabéns!!! Você venceu";
-               
+
                 if (vencedor == "X") {
                     vencedor = " 1º Jogador.";
                 } else {
