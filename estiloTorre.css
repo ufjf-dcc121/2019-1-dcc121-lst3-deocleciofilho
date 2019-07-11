@@ -1,0 +1,25 @@
+table{
+border: 0px;
+background-color: #fff;
+border-collapse: 0px;
+border-spacing: 0px;
+padding: 0px;
+margin: auto;
+}
+
+    
+
+
+tr{
+
+width: 480px;
+height: 16px;
+font-size: 0%;
+ 
+
+}
+td{
+    padding: 0px;
+
+    font-size: 0px;
+}
