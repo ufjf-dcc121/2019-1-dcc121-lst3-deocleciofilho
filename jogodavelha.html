@@ -22,8 +22,8 @@
         <div id="c2" class="quadrado" jogada=""></div>
         <div id="c3" class="quadrado" jogada=""></div>
 
-        <div class="r0">
-            <img id="img2" class="imgP" src="imagens/riscovmA.png">
+        <div id = "risco" class="r0">
+            <img id="img2" class="imgP" >
         </div>
 
     </div>
@@ -40,8 +40,8 @@
 
     <script>
 
-        const jgX = "X";
-        const jgY = "O";
+        var jgX = "X";
+        var jgY = "O";
         var jogador = jgX;
         var fimdojogo = false;
         var images = new Array();
@@ -53,9 +53,7 @@
         var btnreiniciar = document.getElementById("btnreiniciar");
         var jogadorDaVez = document.querySelectorAll("div#caixa #img1")[0];
         var jogadoragora = document.getElementById("jgd");
-
-
-
+        var img2 = document.getElementById("img2");
 
         preloadImages("imagens/x1.png", "imagens/o1.png")
         atualizaPlacar();
@@ -141,8 +139,9 @@
             var c2 = document.getElementById("c2").getAttribute("jogada");
             var c3 = document.getElementById("c3").getAttribute("jogada");
 
-
             var vencedor = "";
+
+            // verificando o vencedor
 
             if (((a1 == b1 && a1 == c1) ||
                 (a1 == a2 && a1 == a3) ||
@@ -160,6 +159,79 @@
                 c3 != "") {
                 vencedor = c3;
             }
+
+            /// Inserindo os riscos
+
+            // verticais
+            if (a1 == b1 && a1 == c1 && vencedor == "X" && a1 != ""){
+                img2.src = "imagens/riscovEA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            }else if (a1 == b1 && a1 == c1 && vencedor == "O" && a1 != ""){
+                img2.src = "imagens/riscovEV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+            if (a2 == b2 && a2 == c2 && vencedor == "X" && a2 != "") {
+                img2.src = "imagens/riscovMA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (a2 == b2 && a2 == c2 && vencedor == "O" && a2 != "") {
+                img2.src = "imagens/riscovMV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+            if (a3 == b3 && a3 == c3 && vencedor == "X" && a3 != "") {
+                img2.src = "imagens/riscovDA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (a3 == b3 && a3 == c3 && vencedor == "O" && a3 != "") {
+                img2.src = "imagens/riscovDV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+
+            //horizontais
+
+            if (a1 == a2 && a1 == a3 && vencedor == "X" && a1 != "") {
+                img2.src = "imagens/riscohCA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (a1 == a2 && a1 == a3 && vencedor == "O" && a1 != "")  {
+                img2.src = "imagens/riscohCV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+            if (b1 == b2 && b1 == b3 && vencedor == "X" && b1 != "") {
+                img2.src = "imagens/riscohMA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (b1 == b2 && b1 == b3 && vencedor == "O" && b1 != "") {
+                img2.src = "imagens/riscohMV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+            if (c1 == c2 && c1 == c3 && vencedor == "X" && c1 != "") {
+                img2.src = "imagens/riscohBA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (c1 == c2 && c1 == c3 && vencedor == "O" && c1 != "")  {
+                img2.src = "imagens/riscohBV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+            //Transversais
+
+            if (a1 == b2 && a1 == c3 && vencedor == "X" && a1 != "") {
+                img2.src = "imagens/riscoeA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (a1 == b2 && a1 == c3 && vencedor == "O" && a1 != "") {
+                img2.src = "imagens/riscoeV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+            if (a3 == b2 && a3 == c1 && vencedor == "X" && a3 != "") {
+                img2.src = "imagens/riscodA.png";
+                document.getElementById("risco").style.zIndex = "1";
+            } else if (a3 == b2 && a3 == c1 && vencedor == "O" && a3 != "") {
+                img2.src = "imagens/riscodV.gif";
+                document.getElementById("risco").style.zIndex = "1";
+            }
+
+            //Quem venceu 
 
             if (vencedor != "") {
                 fimdojogo = true;
